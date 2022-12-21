@@ -1,6 +1,5 @@
 import { GetStaticProps, GetStaticPaths } from "next";
-import { MdxRemote } from "next-mdx-remote/types";
-import { MDXRemote } from "next-mdx-remote"
+import { MDXRemote, MDXRemoteSerializeResult  } from "next-mdx-remote"
 import { serialize } from "next-mdx-remote/serialize"
 import matter from "gray-matter";
 import { fetchPostContent } from "../../lib/posts";
@@ -9,8 +8,8 @@ import yaml from "js-yaml";
 import { parseISO } from 'date-fns';
 import PostLayout from "../../components/PostLayout";
 
-import YouTube from "react-youtube";
-import { TwitterTweetEmbed } from "react-twitter-embed";
+// import YouTube from "react-youtube";
+// import TwitterTweetEmbed from "react-twitter-embed";
 
 export type Props = {
   title: string;
@@ -19,10 +18,10 @@ export type Props = {
   tags: string[];
   author: string;
   description?: string;
-  source: MdxRemote.Source;
+  source: MDXRemoteSerializeResult;
 };
 
-const components = { YouTube, TwitterTweetEmbed };
+// const components = { YouTube, TwitterTweetEmbed };
 const slugToPostContent = (postContents => {
   let hash = {}
   postContents.forEach(it => hash[it.slug] = it)
@@ -47,7 +46,7 @@ export default function Post({
       author={author}
       description={description}
     >
-      <MDXRemote  {...source} components={{components}} />
+      <MDXRemote  {...source} />
     </PostLayout>
   )
 }
