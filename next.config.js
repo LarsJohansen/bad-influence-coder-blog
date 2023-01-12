@@ -1,4 +1,4 @@
-module.exports = ({
+module.exports = {
   pageExtensions: ["tsx"],
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
     config.module.rules.push(
@@ -12,8 +12,13 @@ module.exports = ({
           test: /\.svg$/,
           use: "@svgr/webpack",
         },
+        {
+          test: /\.svg$/i,
+          issuer: /\.[jt]sx?$/,
+          use: ["@svgr/webpack"],
+        },
       ]
     );
     return config;
   },
-});
+};

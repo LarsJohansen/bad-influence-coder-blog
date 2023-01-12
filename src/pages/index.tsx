@@ -4,6 +4,7 @@ import OpenGraphMeta from "../components/meta/OpenGraphMeta";
 import TwitterCardMeta from "../components/meta/TwitterCardMeta";
 import { SocialList } from "../components/SocialList";
 
+
 export default function Index() {
   return (
     <Layout>
